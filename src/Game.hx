@@ -9,8 +9,8 @@ class Game extends hxd.App {
 		var myscene = new h2d.Scene(); // create a new scene
 		setScene(myscene); // set it as the current scene
 		this.mappa = Mappa.instance;
-
-		myscene.addChild(this.mappa.generaTabella());
+		myscene.addChild(this.mappa);
+		this.mappa.generaTabella();
 	}
 
 	override function update(dt:Float):Void {}
