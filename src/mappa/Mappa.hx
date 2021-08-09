@@ -1,5 +1,6 @@
 package mappa;
 
+import entity.Enemy;
 import entity.Hero;
 import h2d.col.Point;
 import entity.Quad;
@@ -26,7 +27,9 @@ class Mappa extends h2d.Object {
 
 		this.addChild(this.bg);
 		this.addChild(this.entita);
+	}
 
+	private function generaMappa() {
 		this.mappaInt = new Array<Array<Int>>();
 		for (y in 0...RIGHE) {
 			this.mappaInt.push(new Array<Int>());
@@ -159,12 +162,15 @@ class Mappa extends h2d.Object {
 		}
 
 		// l'eroe parte dalla prima stanza
-		var tmpY:Int = Math.floor(foglie[0].centro().y) + Random.int(2, (Math.floor(foglie[0].w / 2) - 1));
-		var tmpX:Int = Math.floor(foglie[0].centro().x) + Random.int(2, (Math.floor(foglie[0].h / 2) - 1));
-		this.heroStart = new Point(tmpX, tmpY);
+		this.hero = new Hero(foglie[0].centro());
+		this.entita.addChild(this.hero);
+
+		var tmp:Enemy = new Enemy(1, foglie[1].centro());
+		this.entita.addChild(tmp);
 	}
 
 	public function generaTabella() {
+		this.generaMappa();
 		this.mappa = new Array<Array<Tile>>();
 
 		this.bg.addChild(new h2d.Bitmap(hxd.Res.human_m.toTile()));
@@ -176,8 +182,6 @@ class Mappa extends h2d.Object {
 				this.bg.addChild(tmpTile);
 			}
 		}
-		this.hero = new Hero(this.heroStart);
-		this.entita.addChild(this.hero);
 	}
 
 	public function isWalkable(X:Int, Y:Int):Bool {
