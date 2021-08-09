@@ -1,23 +1,32 @@
 package mappa;
 
-import js.html.Console;
+import entity.Hero;
 import h2d.col.Point;
 import entity.Quad;
 import hxd.Math;
 import entity.Tile;
 
 @:publicFields
-class Mappa {
+class Mappa extends h2d.Object {
 	var bg:h2d.Object;
 	var entita:h2d.Object;
 	var mappa:Array<Array<Tile>>;
 	var mappaInt:Array<Array<Int>>;
+	var hero:Hero;
+	var heroStart:Point;
 	var RIGHE:Int = 28; // 18; //
 	var COLONNE:Int = 40; // 25; //
 
 	public static final instance:Mappa = new Mappa();
 
 	private function new() {
+		super();
+		this.bg = new h2d.Object();
+		this.entita = new h2d.Object();
+
+		this.addChild(this.bg);
+		this.addChild(this.entita);
+
 		this.mappaInt = new Array<Array<Int>>();
 		for (y in 0...RIGHE) {
 			this.mappaInt.push(new Array<Int>());
@@ -81,19 +90,13 @@ class Mappa {
 			var c2:Point = fq.centro();
 			var dx = Math.floor(c1.x - c2.x) + 1;
 			var dy = Math.floor(c1.y - c2.y) + 1;
-			trace(c1);
-			trace(c2);
-			trace(dx);
-			trace(dy);
 			if (dx > dy) {
 				// prima x e poi y
 				var lastStep:Int = 0;
 				for (X in 0...dx) {
-					trace(Math.floor(c1.x + X));
 					lastStep = X;
 					this.mappaInt[Math.floor(c1.y)][Math.floor(c1.x - X)] = 0;
 				}
-				trace('dy', dy);
 				if (dy > 0) {
 					for (Y in 0...dy) {
 						this.mappaInt[Math.floor(c1.y - Y)][Math.floor(c1.x - lastStep)] = 0;
@@ -117,7 +120,6 @@ class Mappa {
 				} else {
 					dx = -1 * dx;
 					for (X in 0...dx) {
-						trace(Math.floor(c1.x + X));
 						this.mappaInt[Math.floor(c1.y - lastStep)][Math.floor(c1.x + X)] = 0;
 					}
 				}
@@ -155,11 +157,14 @@ class Mappa {
 				}
 			}
 		}
+
+		// l'eroe parte dalla prima stanza
+		var tmpY:Int = Math.floor(foglie[0].centro().y) + Random.int(2, (Math.floor(foglie[0].w / 2) - 1));
+		var tmpX:Int = Math.floor(foglie[0].centro().x) + Random.int(2, (Math.floor(foglie[0].h / 2) - 1));
+		this.heroStart = new Point(tmpX, tmpY);
 	}
 
-	public function generaTabella():h2d.Object {
-		this.bg = new h2d.Object();
-		this.entita = new h2d.Object();
+	public function generaTabella() {
 		this.mappa = new Array<Array<Tile>>();
 
 		this.bg.addChild(new h2d.Bitmap(hxd.Res.human_m.toTile()));
@@ -171,11 +176,15 @@ class Mappa {
 				this.bg.addChild(tmpTile);
 			}
 		}
-		return this.bg;
+		this.hero = new Hero(this.heroStart);
+		this.entita.addChild(this.hero);
+	}
+
+	public function isWalkable(X:Int, Y:Int):Bool {
+		return (this.mappa[Y][X].tipo == 0);
 	}
 
 	private function generaStanza(X:Int, Y:Int, W:Int, H:Int) {
-		trace(X, Y, W, H);
 		var WW:Int = X + W;
 		var HH:Int = Y + H;
 		for (y in Y...HH) {
