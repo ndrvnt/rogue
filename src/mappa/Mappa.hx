@@ -83,7 +83,6 @@ class Mappa extends h2d.Object {
 			var offH:Int = Random.int(1, 4);
 			var offX:Int = Math.floor(offW / 2);
 			var offY:Int = Math.floor(offH / 2);
-
 			foglie[i].room = new Quad(foglie[i].x + offX, foglie[i].y + offY, foglie[i].w - offW, foglie[i].h - offH);
 			this.generaStanza(foglie[i].x + offX, foglie[i].y + offY, foglie[i].w - offW, foglie[i].h - offH);
 		}
