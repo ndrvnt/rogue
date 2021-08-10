@@ -11,7 +11,7 @@ class Quad {
 	var l:Quad;
 	var r:Quad;
 	var leaf:Bool;
-	var connected:Bool;
+	var room:Quad;
 
 	public function new(X:Int, Y:Int, W:Int, H:Int) {
 		this.x = X;
@@ -21,7 +21,7 @@ class Quad {
 		this.r = null;
 		this.l = null;
 		this.leaf = true;
-		this.connected = false;
+		this.room = null;
 	}
 
 	public function centro():Point {
@@ -45,5 +45,12 @@ class Quad {
 				this.r = new Quad(this.x, this.y + nh, this.w, (this.h - nh));
 			}
 		}
+	}
+
+	public function randomPoint():Point {
+		var j:Int = Random.int((this.room.x + 2), (this.room.x + this.room.w - 2));
+		var k:Int = Random.int((this.room.y + 2), (this.room.y + this.room.h - 2));
+		var p:Point = new Point(j, k);
+		return p;
 	}
 }

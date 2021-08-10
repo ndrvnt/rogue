@@ -5,11 +5,10 @@ import h2d.col.Point;
 class Enemy extends Entity {
 	var hp:Int;
 
-	override public function new(tipo:Int, pos:Point) {
+	override public function new(pos:Point) {
 		super();
 		this.x = pos.x * 32;
 		this.y = pos.y * 32;
-		this.tipo = tipo;
 		this.sprite = this.getSprite();
 		this.addChild(this.sprite);
 	}

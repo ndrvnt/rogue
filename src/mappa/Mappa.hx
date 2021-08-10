@@ -83,6 +83,8 @@ class Mappa extends h2d.Object {
 			var offH:Int = Random.int(1, 4);
 			var offX:Int = Math.floor(offW / 2);
 			var offY:Int = Math.floor(offH / 2);
+
+			foglie[i].room = new Quad(foglie[i].x + offX, foglie[i].y + offY, foglie[i].w - offW, foglie[i].h - offH);
 			this.generaStanza(foglie[i].x + offX, foglie[i].y + offY, foglie[i].w - offW, foglie[i].h - offH);
 		}
 
@@ -165,8 +167,11 @@ class Mappa extends h2d.Object {
 		this.hero = new Hero(foglie[0].centro());
 		this.entita.addChild(this.hero);
 
-		var tmp:Enemy = new Enemy(1, foglie[1].centro());
-		this.entita.addChild(tmp);
+		var nm:Int = Random.int(2, 6);
+		for (n in 0...nm) {
+			var nf:Int = Random.int(1, foglie.length - 1);
+			this.entita.addChild(new Enemy(foglie[nf].randomPoint()));
+		}
 	}
 
 	public function generaTabella() {
