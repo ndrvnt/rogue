@@ -4,12 +4,12 @@ import h2d.col.Point;
 import mappa.Mappa;
 
 class Hero extends Entity {
-	var hp:Int = 50;
 	var mappa:Mappa;
 	var onMove:Int = -1;
 
 	override public function new(pos:Point) {
 		super();
+		this.hp = 100;
 		this.x = pos.x * 32;
 		this.y = pos.y * 32;
 		this.sprite = new h2d.Bitmap(hxd.Res.human_m.toTile());
