@@ -1,5 +1,6 @@
 package mappa;
 
+import entity.Oggetto;
 import entity.Enemy;
 import entity.Hero;
 import h2d.col.Point;
@@ -14,6 +15,8 @@ class Mappa extends h2d.Object {
 	var mappa:Array<Array<Tile>>;
 	var mappaInt:Array<Array<Int>>;
 	var hero:Hero;
+	var mostri:Array<Enemy>;
+	var oggetti:Array<Oggetto>;
 	var heroStart:Point;
 	var RIGHE:Int = 28; // 18; //
 	var COLONNE:Int = 40; // 25; //
@@ -24,7 +27,6 @@ class Mappa extends h2d.Object {
 		super();
 		this.bg = new h2d.Object();
 		this.entita = new h2d.Object();
-
 		this.addChild(this.bg);
 		this.addChild(this.entita);
 	}
@@ -166,10 +168,22 @@ class Mappa extends h2d.Object {
 		this.hero = new Hero(foglie[0].centro());
 		this.entita.addChild(this.hero);
 
+		this.mostri = new Array<Enemy>();
 		var nm:Int = Random.int(2, 6);
 		for (n in 0...nm) {
 			var nf:Int = Random.int(1, foglie.length - 1);
-			this.entita.addChild(new Enemy(foglie[nf].randomPoint()));
+			var tmp:Enemy = new Enemy(foglie[nf].randomPoint());
+			this.mostri.push(tmp);
+			this.entita.addChild(tmp);
+		}
+
+		this.oggetti = new Array<Oggetto>();
+		nm = Random.int(2, 6);
+		for (n in 0...nm) {
+			var nf:Int = Random.int(1, foglie.length - 1);
+			var tmp:Oggetto = new Oggetto(foglie[nf].randomPoint());
+			this.oggetti.push(tmp);
+			this.entita.addChild(tmp);
 		}
 	}
 
