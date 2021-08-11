@@ -3,8 +3,6 @@ package entity;
 import h2d.col.Point;
 
 class Enemy extends Entity {
-	var hp:Int;
-
 	override public function new(pos:Point) {
 		super();
 		this.x = pos.x * 32;
@@ -18,4 +16,6 @@ class Enemy extends Entity {
 		this.hp = 20;
 		return sprite;
 	}
+
+	public function muovi() {}
 }
