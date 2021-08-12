@@ -1,6 +1,6 @@
 -cp src 			
 -lib heaps
--lib heapsTiled
+# -lib heapsTiled
 -lib random
 -lib noisehx
 #-lib hlsdl
