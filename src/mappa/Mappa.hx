@@ -206,6 +206,12 @@ class Mappa extends h2d.Object {
 		return (this.mappa[Y][X].tipo == 0);
 	}
 
+	// public function collisioneOggetti(X:Int, Y:Int):Oggetto {
+	// 	var trovato:Oggetto=null;
+	// 	this.oggetti.
+	// 	return (this.mappa[Y][X].tipo == 0);
+	// }
+
 	private function generaStanza(X:Int, Y:Int, W:Int, H:Int) {
 		var WW:Int = X + W;
 		var HH:Int = Y + H;
