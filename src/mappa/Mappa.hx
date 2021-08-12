@@ -206,11 +206,20 @@ class Mappa extends h2d.Object {
 		return (this.mappa[Y][X].tipo == 0);
 	}
 
-	// public function collisioneOggetti(X:Int, Y:Int):Oggetto {
-	// 	var trovato:Oggetto=null;
-	// 	this.oggetti.
-	// 	return (this.mappa[Y][X].tipo == 0);
-	// }
+	public function collisioneOggetti(X:Float, Y:Float):Oggetto {
+		var trovato:Oggetto = null;
+		var ind:Int = -1;
+		for (i in 0...this.oggetti.length - 1) {
+			if (this.oggetti[i].x == X && this.oggetti[i].y == Y) {
+				ind = i;
+			}
+		}
+		if (ind > -1) {
+			trovato = this.oggetti.splice(ind, 1)[0];
+			this.entita.removeChild(trovato);
+		}
+		return trovato;
+	}
 
 	private function generaStanza(X:Int, Y:Int, W:Int, H:Int) {
 		var WW:Int = X + W;
