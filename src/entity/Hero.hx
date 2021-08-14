@@ -7,6 +7,8 @@ class Hero extends Entity {
 	var mappa:Mappa;
 	var onMove:Int = -1;
 	var zaino:Zaino;
+	var gg:Game;
+	var cambioscena:Bool = false;
 
 	override public function new(pos:Point) {
 		super();
@@ -17,6 +19,7 @@ class Hero extends Entity {
 		this.addChild(this.sprite);
 		this.zaino = Zaino.instance;
 		this.mappa = Mappa.instance;
+		this.gg = Game.instance;
 		hxd.Window.getInstance().addEventTarget(this.movimento);
 	}
 
@@ -24,8 +27,15 @@ class Hero extends Entity {
 		switch (event.kind) {
 			case EKeyDown:
 				if (event.keyCode == 73) {
-					trace("Apro l'inventario!");
-					return;
+					if (!this.cambioscena) {
+						this.gg.mostraInventario();
+						this.cambioscena = true;
+						return;
+					} else {
+						this.gg.mostraMappa();
+						this.cambioscena = false;
+						return;
+					}
 				}
 				if (this.onMove == -1) {
 					this.onMove = event.keyCode;
