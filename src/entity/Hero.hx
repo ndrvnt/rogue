@@ -6,7 +6,7 @@ import mappa.Mappa;
 class Hero extends Entity {
 	var mappa:Mappa;
 	var onMove:Int = -1;
-	var zaino:Array<Oggetto>;
+	var zaino:Zaino;
 
 	override public function new(pos:Point) {
 		super();
@@ -15,7 +15,7 @@ class Hero extends Entity {
 		this.y = pos.y * 32;
 		this.sprite = new h2d.Bitmap(hxd.Res.human_m.toTile());
 		this.addChild(this.sprite);
-		this.zaino = new Array<Oggetto>();
+		this.zaino = Zaino.instance;
 		this.mappa = Mappa.instance;
 		hxd.Window.getInstance().addEventTarget(this.movimento);
 	}
@@ -23,6 +23,10 @@ class Hero extends Entity {
 	public function movimento(event:hxd.Event) {
 		switch (event.kind) {
 			case EKeyDown:
+				if (event.keyCode == 73) {
+					trace("Apro l'inventario!");
+					return;
+				}
 				if (this.onMove == -1) {
 					this.onMove = event.keyCode;
 					var X:Int = Math.floor(this.x / 32);
@@ -49,7 +53,7 @@ class Hero extends Entity {
 					}
 					var ogg:Oggetto = this.mappa.collisioneOggetti(this.x, this.y);
 					if (ogg != null) {
-						this.zaino.push(ogg);
+						this.zaino.aggiungi(ogg);
 					}
 				}
 			case EKeyUp:

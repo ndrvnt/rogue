@@ -1,5 +1,6 @@
 package mappa;
 
+import entity.Zaino;
 import entity.Oggetto;
 import entity.Enemy;
 import entity.Hero;
@@ -20,6 +21,7 @@ class Mappa extends h2d.Object {
 	var heroStart:Point;
 	var RIGHE:Int = 28; // 18; //
 	var COLONNE:Int = 40; // 25; //
+	var zaino:Zaino;
 
 	public static final instance:Mappa = new Mappa();
 
@@ -29,6 +31,10 @@ class Mappa extends h2d.Object {
 		this.entita = new h2d.Object();
 		this.addChild(this.bg);
 		this.addChild(this.entita);
+		this.zaino = Zaino.instance;
+		this.zaino.x = this.COLONNE * 32;
+		this.zaino.y = 32;
+		this.addChild(this.zaino);
 	}
 
 	private function generaMappa() {
@@ -209,7 +215,7 @@ class Mappa extends h2d.Object {
 	public function collisioneOggetti(X:Float, Y:Float):Oggetto {
 		var trovato:Oggetto = null;
 		var ind:Int = -1;
-		for (i in 0...this.oggetti.length - 1) {
+		for (i in 0...this.oggetti.length) {
 			if (this.oggetti[i].x == X && this.oggetti[i].y == Y) {
 				ind = i;
 			}
