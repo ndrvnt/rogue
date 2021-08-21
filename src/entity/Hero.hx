@@ -1,14 +1,15 @@
 package entity;
 
+import mappa.Inventario;
 import h2d.col.Point;
 import mappa.Mappa;
 
 class Hero extends Entity {
 	var mappa:Mappa;
 	var onMove:Int = -1;
-	var zaino:Zaino;
+	var zaino:Inventario;
 	var gg:Game;
-	var cambioscena:Bool = false;
+	var cambioscena:Bool = true;
 
 	override public function new(pos:Point) {
 		super();
@@ -17,25 +18,27 @@ class Hero extends Entity {
 		this.y = pos.y * 32;
 		this.sprite = new h2d.Bitmap(hxd.Res.human_m.toTile());
 		this.addChild(this.sprite);
-		this.zaino = Zaino.instance;
+		this.zaino = Inventario.instance;
 		this.mappa = Mappa.instance;
 		this.gg = Game.instance;
+		this.attiva();
+		// this.gg.mostraInventario();
+	}
+
+	public function attiva() {
 		hxd.Window.getInstance().addEventTarget(this.movimento);
+	}
+
+	public function disattiva() {
+		hxd.Window.getInstance().removeEventTarget(this.movimento);
 	}
 
 	public function movimento(event:hxd.Event) {
 		switch (event.kind) {
 			case EKeyDown:
 				if (event.keyCode == 73) {
-					if (!this.cambioscena) {
-						this.gg.mostraInventario();
-						this.cambioscena = true;
-						return;
-					} else {
-						this.gg.mostraMappa();
-						this.cambioscena = false;
-						return;
-					}
+					this.gg.mostraInventario();
+					return;
 				}
 				if (this.onMove == -1) {
 					this.onMove = event.keyCode;
