@@ -13,10 +13,7 @@ class Inventario extends h2d.Object {
 
 	private function new() {
 		super();
-
-		// this.font = hxd.res.DefaultFont.get();
 		this.inventario = new Array<Oggetto>();
-		// hxd.Window.getInstance().addEventTarget(this.cambiaPos);
 	}
 
 	public function aggiungi(ogg:Oggetto) {
@@ -36,8 +33,12 @@ class Inventario extends h2d.Object {
 	}
 
 	public function cambiaPos(event:hxd.Event) {
+		// trace(event.keyCode);
 		switch (event.kind) {
 			case EKeyDown:
+				if (event.keyCode == 85) {
+					this.usaOggetto();
+				}
 				if (event.keyCode == 83) {
 					this.pos = (this.pos + 1) % this.inventario.length;
 				}
@@ -89,5 +90,19 @@ class Inventario extends h2d.Object {
 				this.addChild(tf);
 			}
 		}
+	}
+
+	public function usaOggetto() {
+		if (this.inventario.length == 0) {
+			return;
+		}
+		var ogg:Oggetto = this.inventario.splice(this.pos, 1)[0];
+		switch (ogg.tipo) {
+			case 1:
+				this.gg.mappa.hero.hp += 50;
+			case _:
+		}
+		this.pos = 0;
+		this.aggiorna();
 	}
 }
