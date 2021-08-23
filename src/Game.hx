@@ -33,7 +33,6 @@ class Game extends hxd.App {
 				this.cambio = true;
 			}
 		}
-		// setScene(this.scenaInventario);
 	}
 
 	public function mostraMappa() {

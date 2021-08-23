@@ -212,7 +212,26 @@ class Mappa extends h2d.Object {
 		return (this.mappa[Y][X].tipo == 0);
 	}
 
+	public function controlloFight() {
+		var ind:Int = -1;
+		for (i in 0...this.mostri.length) {
+			if (this.mostri[i].x == this.hero.x && this.mostri[i].y == this.hero.y) {
+				// combattimento
+				if (this.hero.hp > this.mostri[i].hp) {
+					this.hero.hp -= this.mostri[i].hp;
+					ind = i;
+				} else {
+					// TODO: morto
+				}
+			}
+		}
+		if (ind > -1) {
+			this.mostri.splice(ind, 1)[0].muori();
+		}
+	}
+
 	public function collisioneOggetti(X:Float, Y:Float):Oggetto {
+		this.controlloFight();
 		var trovato:Oggetto = null;
 		var ind:Int = -1;
 		for (i in 0...this.oggetti.length) {

@@ -7,6 +7,7 @@ class Enemy extends Entity {
 		super();
 		this.x = pos.x * 32;
 		this.y = pos.y * 32;
+		this.hp = 25;
 		this.sprite = this.getSprite();
 		this.addChild(this.sprite);
 		this.gg = Game.instance;
@@ -80,5 +81,10 @@ class Enemy extends Entity {
 				}
 			}
 		}
+		this.gg.mappa.controlloFight();
+	}
+
+	public function muori() {
+		this.removeChild(this.sprite);
 	}
 }
