@@ -5,6 +5,7 @@ class Entity extends h2d.Object {
 	var sprite:h2d.Bitmap;
 	var tipo:Int;
 	var hp:Int;
+	var gg:Game;
 
 	public function new() {
 		super();

@@ -202,6 +202,12 @@ class Mappa extends h2d.Object {
 		}
 	}
 
+	public function muoviEnemy() {
+		for (i in 0...this.mostri.length) {
+			this.mostri[i].muovi();
+		}
+	}
+
 	public function isWalkable(X:Int, Y:Int):Bool {
 		return (this.mappa[Y][X].tipo == 0);
 	}

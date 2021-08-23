@@ -9,6 +9,7 @@ class Enemy extends Entity {
 		this.y = pos.y * 32;
 		this.sprite = this.getSprite();
 		this.addChild(this.sprite);
+		this.gg = Game.instance;
 	}
 
 	private function getSprite():h2d.Bitmap {
@@ -17,5 +18,67 @@ class Enemy extends Entity {
 		return sprite;
 	}
 
-	public function muovi() {}
+	public function muovi() {
+		var hX:Float = this.gg.mappa.hero.x;
+		var hY:Float = this.gg.mappa.hero.y;
+
+		var dx:Int = Math.floor(hX / 32 - this.x / 32);
+		var dy:Int = Math.floor(hY - this.y);
+
+		var move:Bool = false;
+
+		if (dx > dy) {
+			if (dx > 0) {
+				if (this.gg.mappa.isWalkable(Math.floor(this.x / 32) + 1, Math.floor(this.y / 32))) {
+					move = true;
+					this.x += 32;
+				}
+			} else {
+				if (this.gg.mappa.isWalkable(Math.floor(this.x / 32) - 1, Math.floor(this.y / 32))) {
+					move = true;
+					this.x -= 32;
+				}
+			}
+
+			if (!move) {
+				if (dy > 0) {
+					if (this.gg.mappa.isWalkable(Math.floor(this.x / 32), Math.floor(this.y / 32) + 1)) {
+						move = true;
+						this.y += 32;
+					}
+				} else {
+					if (this.gg.mappa.isWalkable(Math.floor(this.x / 32), Math.floor(this.y / 32) - 1)) {
+						move = true;
+						this.y -= 32;
+					}
+				}
+			}
+		} else {
+			if (dy > 0) {
+				if (this.gg.mappa.isWalkable(Math.floor(this.x / 32), Math.floor(this.y / 32) + 1)) {
+					move = true;
+					this.y += 32;
+				}
+			} else {
+				if (this.gg.mappa.isWalkable(Math.floor(this.x / 32), Math.floor(this.y / 32) - 1)) {
+					move = true;
+					this.y -= 32;
+				}
+			}
+
+			if (!move) {
+				if (dx > 0) {
+					if (this.gg.mappa.isWalkable(Math.floor(this.x / 32) + 1, Math.floor(this.y / 32))) {
+						move = true;
+						this.x += 32;
+					}
+				} else {
+					if (this.gg.mappa.isWalkable(Math.floor(this.x / 32) - 1, Math.floor(this.y / 32))) {
+						move = true;
+						this.x -= 32;
+					}
+				}
+			}
+		}
+	}
 }

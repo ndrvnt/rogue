@@ -8,7 +8,6 @@ class Hero extends Entity {
 	var mappa:Mappa;
 	var onMove:Int = -1;
 	var zaino:Inventario;
-	var gg:Game;
 	var cambioscena:Bool = true;
 
 	override public function new(pos:Point) {
@@ -73,6 +72,7 @@ class Hero extends Entity {
 				if (this.onMove > -1) {
 					if (this.onMove == event.keyCode) {
 						this.onMove = -1;
+						this.mappa.muoviEnemy();
 					}
 				}
 			case _:
