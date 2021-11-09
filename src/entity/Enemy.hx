@@ -2,12 +2,15 @@ package entity;
 
 import h2d.col.Point;
 
+@:publicFields
 class Enemy extends Entity {
+	var morto:Bool = false;
+
 	override public function new(pos:Point) {
 		super();
 		this.x = pos.x * 32;
 		this.y = pos.y * 32;
-		this.hp = 25;
+		this.hp = 20;
 		this.sprite = this.getSprite();
 		this.addChild(this.sprite);
 		this.gg = Game.instance;

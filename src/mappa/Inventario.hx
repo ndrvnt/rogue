@@ -20,41 +20,43 @@ class Inventario extends h2d.Object {
 		this.inventario.push(ogg);
 	}
 
-	public function attiva() {
-		trace("Attivo inventario");
-		this.gg = Game.instance;
-		hxd.Window.getInstance().addEventTarget(this.cambiaPos);
+	public function svuota() {
+		this.inventario.splice(0, this.inventario.length);
 	}
 
-	public function disattiva() {
-		trace("disattivo inventario");
-		this.gg = null;
-		hxd.Window.getInstance().removeEventTarget(this.cambiaPos);
-	}
-
-	public function cambiaPos(event:hxd.Event) {
-		// trace(event.keyCode);
-		switch (event.kind) {
-			case EKeyDown:
-				if (event.keyCode == 85) {
-					this.usaOggetto();
-				}
-				if (event.keyCode == 83) {
-					this.pos = (this.pos + 1) % this.inventario.length;
-				}
-				if (event.keyCode == 87) {
-					this.pos = (this.pos - 1);
-					if (this.pos < 0)
-						this.pos += this.inventario.length;
-				}
-				if (event.keyCode == 73) {
-					this.gg.mostraMappa();
-					return;
-				}
-			case _:
-		}
-		this.aggiorna();
-	}
+	// public function attiva() {
+	// 	trace("Attivo inventario");
+	// 	// this.gg = Game.instance;
+	// 	// hxd.Window.getInstance().addEventTarget(this.cambiaPos);
+	// }
+	// public function disattiva() {
+	// 	trace("disattivo inventario");
+	// 	this.gg = null;
+	// 	hxd.Window.getInstance().removeEventTarget(this.cambiaPos);
+	// }
+	// public function cambiaPos(event:hxd.Event) {
+	// 	// trace(event.keyCode);
+	// 	switch (event.kind) {
+	// 		case EKeyUp:
+	// 			if (event.keyCode == 85) {
+	// 				this.usaOggetto();
+	// 			}
+	// 			if (event.keyCode == 83) {
+	// 				this.pos = (this.pos + 1) % this.inventario.length;
+	// 			}
+	// 			if (event.keyCode == 87) {
+	// 				this.pos = (this.pos - 1);
+	// 				if (this.pos < 0)
+	// 					this.pos += this.inventario.length;
+	// 			}
+	// 			if (event.keyCode == 73) {
+	// 				this.gg.mostraMappa();
+	// 				return;
+	// 			}
+	// 		case _:
+	// 	}
+	// 	this.aggiorna();
+	// }
 
 	public function aggiorna() {
 		this.removeChildren();

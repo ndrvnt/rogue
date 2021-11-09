@@ -18,8 +18,8 @@ class Mappa extends h2d.Object {
 	var mostri:Array<Enemy>;
 	var oggetti:Array<Oggetto>;
 	var heroStart:Point;
-	var RIGHE:Int = 28; // 18; //
-	var COLONNE:Int = 40; // 25; //
+	var RIGHE:Int = 18; // 28; //
+	var COLONNE:Int = 25; // 40; //
 
 	public static final instance:Mappa = new Mappa();
 
@@ -165,6 +165,8 @@ class Mappa extends h2d.Object {
 		}
 
 		// l'eroe parte dalla prima stanza
+		this.entita.removeChildren();
+
 		this.hero = new Hero(foglie[0].centro());
 		this.entita.addChild(this.hero);
 
@@ -204,6 +206,7 @@ class Mappa extends h2d.Object {
 
 	public function muoviEnemy() {
 		for (i in 0...this.mostri.length) {
+			// trace(this.mostri[i]);
 			this.mostri[i].muovi();
 		}
 	}
@@ -219,9 +222,14 @@ class Mappa extends h2d.Object {
 				// combattimento
 				if (this.hero.hp > this.mostri[i].hp) {
 					this.hero.hp -= this.mostri[i].hp;
+					this.mostri[i].morto = true;
 					ind = i;
+					trace(this.hero.hp);
 				} else {
 					// TODO: morto
+					trace("#### MORTO###");
+					Game.instance.morteHero();
+					break;
 				}
 			}
 		}
