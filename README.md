@@ -23,3 +23,12 @@ Cosa vorrei aggiungere ancora
 - [ ] Scena di _Game Over_
 - [ ] UI per informare il giocare
 - [ ] Aggiungere altri _Mostri_
+
+```
+Part of (or All) the graphic tiles used in this program is the public
+domain roguelike tileset "RLTiles".
+Some of the tiles have been modified by YOURNAME.
+
+You can find the original tileset at:
+http://rltiles.sf.net
+```
