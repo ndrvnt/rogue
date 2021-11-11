@@ -14,10 +14,10 @@ Al momento funziona:
 - [x] Posizionamento _Mostri_ nelle stanze
 - [x] Un minimo di movimento dei _Mostri_
 - [x] Scena di _Game Over_
+- [x] Discesa nel _Dungeon_ tramite scale
 
 Cosa vorrei aggiungere ancora
 
-- [ ] Discesa nel _Dungeon_ tramite scale
 - [ ] Miglioramento movimento _Mostri_
 - [ ] Aggiungere _Equipaggiamento_
 - [ ] Creare un _Combattimento_

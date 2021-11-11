@@ -34,7 +34,6 @@ class Tile extends Entity {
 					case 4: sprite = new h2d.Bitmap(hxd.Res.pavimento.crystal_floor4.toTile());
 					case 5: sprite = new h2d.Bitmap(hxd.Res.pavimento.crystal_floor5.toTile());
 				}
-
 			case 1: // wall
 				// sprite = new h2d.Bitmap(hxd.Res.muro.brick_gray0.toTile());
 				var t:Int = Random.int(0, 3);
@@ -45,10 +44,12 @@ class Tile extends Entity {
 					case 3: sprite = new h2d.Bitmap(hxd.Res.muro.brick_gray3.toTile());
 				}
 			case 2: // wall
-				sprite = new h2d.Bitmap(hxd.Res.deco.elephant_statue.toTile());
+				sprite = new h2d.Bitmap(hxd.Res.pavimento.stairs_down.toTile());
 			case 3: // wall
-				sprite = new h2d.Bitmap(hxd.Res.arrow.toTile());
+				sprite = new h2d.Bitmap(hxd.Res.deco.elephant_statue.toTile());
 			case 4: // wall
+				sprite = new h2d.Bitmap(hxd.Res.arrow.toTile());
+			case 5: // wall
 				sprite = new h2d.Bitmap(hxd.Res.flail.toTile());
 			case _:
 				sprite = new h2d.Bitmap(hxd.Res.pavimento.dngn_unseen.toTile());

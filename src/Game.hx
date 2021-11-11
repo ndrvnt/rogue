@@ -17,7 +17,7 @@ class Game extends hxd.App {
 
 	override function init() {
 		super.init();
-		this.scenaMappa = new h2d.Scene(); // create a new scene
+		this.scenaMappa = new h2d.Scene();
 		this.scenaInventario = new h2d.Scene();
 		this.scenaMenu = new h2d.Scene();
 		this.scenaGameover = new h2d.Scene();
@@ -38,8 +38,6 @@ class Game extends hxd.App {
 	public function mostraInventario() {
 		if (this.cambio) {
 			this.cambio = false;
-			// this.mappa.hero.disattiva();
-			// this.inventario.attiva();
 			this.inventario.aggiorna();
 			setScene(this.scenaInventario);
 			var timer = new haxe.Timer(500);
@@ -52,7 +50,6 @@ class Game extends hxd.App {
 	public function mostraMappa() {
 		if (this.cambio) {
 			this.cambio = false;
-			// this.inventario.disattiva();
 			setScene(this.scenaMappa);
 			var timer = new haxe.Timer(500);
 			timer.run = function() {
@@ -62,19 +59,22 @@ class Game extends hxd.App {
 	}
 
 	public function inizioGioco() {
-		// setScene(this.scenaMappa); // set it as the current scene
 		this.mostraMappa();
 	}
-
-	override function update(dt:Float):Void {}
 
 	public function morteHero() {
 		this.inventario.svuota();
 		this.mappa.hero.menu = true;
 		this.mappa.generaTabella();
-		// setScene(this.scenaMenu);
 		setScene(this.scenaGameover);
 	}
+
+	public function cambiaMappa() {
+		this.mappa.generaTabella();
+		///setScene(this.scenaGameover);
+	}
+
+	override function update(dt:Float):Void {}
 
 	public static var instance:Game;
 

@@ -49,22 +49,30 @@ class Hero extends Entity {
 							if (event.keyCode == 87) {
 								if (this.mappa.isWalkable(X, Y - 1)) {
 									this.y -= 32;
+									Y -= 1;
 								}
 							}
 							if (event.keyCode == 83) {
 								if (this.mappa.isWalkable(X, Y + 1)) {
 									this.y += 32;
+									Y += 1;
 								}
 							}
 							if (event.keyCode == 65) {
 								if (this.mappa.isWalkable(X - 1, Y)) {
 									this.x -= 32;
+									X -= 1;
 								}
 							}
 							if (event.keyCode == 68) {
 								if (this.mappa.isWalkable(X + 1, Y)) {
 									this.x += 32;
+									X += 1;
 								}
+							}
+							if (this.mappa.isStair(X, Y)) {
+								this.gg.cambiaMappa();
+								return;
 							}
 							var ogg:Oggetto = this.mappa.collisioneOggetti(this.x, this.y);
 							if (ogg != null) {

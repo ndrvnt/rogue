@@ -171,7 +171,7 @@ class Mappa extends h2d.Object {
 		this.entita.addChild(this.hero);
 
 		this.mostri = new Array<Enemy>();
-		var nm:Int = Random.int(2, 6);
+		var nm:Int = Random.int(2, 4);
 		for (n in 0...nm) {
 			var nf:Int = Random.int(1, foglie.length - 1);
 			var tmp:Enemy = new Enemy(foglie[nf].randomPoint());
@@ -180,13 +180,16 @@ class Mappa extends h2d.Object {
 		}
 
 		this.oggetti = new Array<Oggetto>();
-		nm = Random.int(2, 6);
+		nm = Random.int(1, 3);
 		for (n in 0...nm) {
 			var nf:Int = Random.int(1, foglie.length - 1);
 			var tmp:Oggetto = new Oggetto(foglie[nf].randomPoint());
 			this.oggetti.push(tmp);
 			this.entita.addChild(tmp);
 		}
+
+		var t:Point = foglie[foglie.length - 1].randomPoint();
+		this.mappaInt[Math.ceil(t.y)][Math.ceil(t.x)] = 2;
 	}
 
 	public function generaTabella() {
@@ -212,7 +215,12 @@ class Mappa extends h2d.Object {
 	}
 
 	public function isWalkable(X:Int, Y:Int):Bool {
-		return (this.mappa[Y][X].tipo == 0);
+		return (this.mappa[Y][X].tipo == 0 || this.mappa[Y][X].tipo == 2);
+	}
+
+	public function isStair(X:Int, Y:Int):Bool {
+		trace(this.mappa[Y][X].tipo);
+		return (this.mappa[Y][X].tipo == 2);
 	}
 
 	public function controlloFight() {
