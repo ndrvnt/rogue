@@ -1,3 +1,4 @@
+import scene.Gameover;
 import scene.Menu;
 import mappa.Inventario;
 import mappa.Mappa;
@@ -9,17 +10,23 @@ class Game extends hxd.App {
 	var scenaMappa:h2d.Scene;
 	var scenaInventario:h2d.Scene;
 	var scenaMenu:h2d.Scene;
+	var scenaGameover:h2d.Scene;
 	var cambio:Bool = true;
 	var menu:Menu;
+	var gameover:Gameover;
 
 	override function init() {
 		super.init();
 		this.scenaMappa = new h2d.Scene(); // create a new scene
 		this.scenaInventario = new h2d.Scene();
 		this.scenaMenu = new h2d.Scene();
+		this.scenaGameover = new h2d.Scene();
 		this.menu = Menu.instance;
 		this.menu.init();
 		this.scenaMenu.addChild(this.menu);
+		this.gameover = Gameover.instance;
+		this.gameover.init();
+		this.scenaGameover.addChild(this.gameover);
 		this.mappa = Mappa.instance;
 		this.inventario = Inventario.instance;
 		this.scenaInventario.addChild(this.inventario);
@@ -63,8 +70,10 @@ class Game extends hxd.App {
 
 	public function morteHero() {
 		this.inventario.svuota();
+		this.mappa.hero.menu = true;
 		this.mappa.generaTabella();
-		setScene(this.scenaMenu);
+		// setScene(this.scenaMenu);
+		setScene(this.scenaGameover);
 	}
 
 	public static var instance:Game;

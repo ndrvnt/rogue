@@ -13,6 +13,7 @@ Al momento funziona:
 - [x] Posizionamento _Pozioni_ nelle stanze
 - [x] Posizionamento _Mostri_ nelle stanze
 - [x] Un minimo di movimento dei _Mostri_
+- [x] Scena di _Game Over_
 
 Cosa vorrei aggiungere ancora
 
@@ -20,9 +21,10 @@ Cosa vorrei aggiungere ancora
 - [ ] Miglioramento movimento _Mostri_
 - [ ] Aggiungere _Equipaggiamento_
 - [ ] Creare un _Combattimento_
-- [ ] Scena di _Game Over_
 - [ ] UI per informare il giocare
 - [ ] Aggiungere altri _Mostri_
+
+## I tile
 
 ```
 Part of (or All) the graphic tiles used in this program is the public

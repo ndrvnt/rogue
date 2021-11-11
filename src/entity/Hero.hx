@@ -27,9 +27,12 @@ class Hero extends Entity {
 	public function movimento(event:hxd.Event) {
 		if (event.kind == EKeyDown || event.kind == EKeyUp) {
 			if (this.menu) {
-				this.menu = false;
-				this.gg.inizioGioco();
-				return;
+				switch (event.kind) {
+					case EKeyDown:
+						this.menu = false;
+						this.gg.inizioGioco();
+					case _:
+				}
 			}
 			if (!this.inventario) {
 				switch (event.kind) {
