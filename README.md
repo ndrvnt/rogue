@@ -15,6 +15,7 @@ Al momento funziona:
 - [x] Un minimo di movimento dei _Mostri_
 - [x] Scena di _Game Over_
 - [x] Discesa nel _Dungeon_ tramite scale
+- [x] Bitmapfont per il titolo nella scena del _Menu_
 
 Cosa vorrei aggiungere ancora
 

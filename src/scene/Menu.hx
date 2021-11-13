@@ -8,12 +8,12 @@ class Menu extends h2d.Object {
 	}
 
 	public function init() {
-		var tf = new h2d.Text(hxd.res.DefaultFont.get());
+		var tf = new h2d.Text(hxd.Res.fonts.Arcade.toFont());
 		tf.x = 90;
 		tf.y = 90;
-		tf.scaleX = 4;
-		tf.scaleY = 4;
-		tf.text = "ROUGUE...";
+		tf.scaleX = 2;
+		tf.scaleY = 2;
+		tf.text = "[Rogue]";
 		this.addChild(tf);
 
 		var tf2 = new h2d.Text(hxd.res.DefaultFont.get());
