@@ -1,5 +1,6 @@
 package mappa;
 
+import h3d.parts.Data.Randomized;
 import entity.Oggetto;
 import entity.Enemy;
 import entity.Hero;
@@ -7,6 +8,7 @@ import h2d.col.Point;
 import entity.Quad;
 import hxd.Math;
 import entity.Tile;
+import util.Myevent;
 
 @:publicFields
 class Mappa extends h2d.Object {
@@ -29,6 +31,17 @@ class Mappa extends h2d.Object {
 		this.entita = new h2d.Object();
 		this.addChild(this.bg);
 		this.addChild(this.entita);
+	}
+
+	public function init() {
+		this.hero = new Hero();
+	}
+
+	public function PulisciNemici() {
+		for (m in this.mostri) {
+			this.entita.removeChild(m);
+		}
+		this.mostri = [];
 	}
 
 	private function generaMappa() {
@@ -166,9 +179,8 @@ class Mappa extends h2d.Object {
 
 		// l'eroe parte dalla prima stanza
 		this.entita.removeChildren();
-
-		this.hero = new Hero(foglie[0].centro());
 		this.entita.addChild(this.hero);
+		this.hero.setPos(foglie[0].centro());
 
 		this.mostri = new Array<Enemy>();
 		var nm:Int = Random.int(2, 4);
@@ -183,7 +195,7 @@ class Mappa extends h2d.Object {
 		nm = Random.int(1, 3);
 		for (n in 0...nm) {
 			var nf:Int = Random.int(1, foglie.length - 1);
-			var tmp:Oggetto = new Oggetto(foglie[nf].randomPoint());
+			var tmp:Oggetto = new Oggetto(foglie[nf].randomPoint(), this.dammiOggetto());
 			this.oggetti.push(tmp);
 			this.entita.addChild(tmp);
 		}
@@ -207,9 +219,18 @@ class Mappa extends h2d.Object {
 		}
 	}
 
+	private function dammiOggetto():Int {
+		var i:Int = Random.int(1, 100);
+		if (i < 80) {
+			return 1;
+		} else {
+			return 2;
+		}
+	}
+
 	public function muoviEnemy() {
 		for (i in 0...this.mostri.length) {
-			// trace(this.mostri[i]);
+			//	trace(this.mostri[i]);
 			this.mostri[i].muovi();
 		}
 	}

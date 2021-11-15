@@ -28,6 +28,7 @@ class Game extends hxd.App {
 		this.gameover.init();
 		this.scenaGameover.addChild(this.gameover);
 		this.mappa = Mappa.instance;
+		this.mappa.init();
 		this.inventario = Inventario.instance;
 		this.scenaInventario.addChild(this.inventario);
 		scenaMappa.addChild(this.mappa);
@@ -65,13 +66,13 @@ class Game extends hxd.App {
 	public function morteHero() {
 		this.inventario.svuota();
 		this.mappa.hero.menu = true;
+		this.mappa.hero.hp = 100;
 		this.mappa.generaTabella();
 		setScene(this.scenaGameover);
 	}
 
 	public function cambiaMappa() {
 		this.mappa.generaTabella();
-		///setScene(this.scenaGameover);
 	}
 
 	override function update(dt:Float):Void {}

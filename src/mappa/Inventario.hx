@@ -8,6 +8,9 @@ class Inventario extends h2d.Object {
 	var font:h2d.Font;
 	var pos:Int = 0;
 	var gg:Game;
+	var arma:Oggetto;
+	var ring1:Oggetto;
+	var ring2:Oggetto;
 
 	public static final instance:Inventario = new Inventario();
 
@@ -23,40 +26,6 @@ class Inventario extends h2d.Object {
 	public function svuota() {
 		this.inventario.splice(0, this.inventario.length);
 	}
-
-	// public function attiva() {
-	// 	trace("Attivo inventario");
-	// 	// this.gg = Game.instance;
-	// 	// hxd.Window.getInstance().addEventTarget(this.cambiaPos);
-	// }
-	// public function disattiva() {
-	// 	trace("disattivo inventario");
-	// 	this.gg = null;
-	// 	hxd.Window.getInstance().removeEventTarget(this.cambiaPos);
-	// }
-	// public function cambiaPos(event:hxd.Event) {
-	// 	// trace(event.keyCode);
-	// 	switch (event.kind) {
-	// 		case EKeyUp:
-	// 			if (event.keyCode == 85) {
-	// 				this.usaOggetto();
-	// 			}
-	// 			if (event.keyCode == 83) {
-	// 				this.pos = (this.pos + 1) % this.inventario.length;
-	// 			}
-	// 			if (event.keyCode == 87) {
-	// 				this.pos = (this.pos - 1);
-	// 				if (this.pos < 0)
-	// 					this.pos += this.inventario.length;
-	// 			}
-	// 			if (event.keyCode == 73) {
-	// 				this.gg.mostraMappa();
-	// 				return;
-	// 			}
-	// 		case _:
-	// 	}
-	// 	this.aggiorna();
-	// }
 
 	public function aggiorna() {
 		this.removeChildren();
@@ -99,11 +68,16 @@ class Inventario extends h2d.Object {
 			return;
 		}
 		var ogg:Oggetto = this.inventario.splice(this.pos, 1)[0];
-		switch (ogg.tipo) {
-			case 1:
-				this.gg.mappa.hero.hp += 50;
-			case _:
-		}
+
+		ogg.usa(Game.instance.mappa);
+
+		// switch (ogg.tipo) {
+		// 	case 1:
+		// 		this.gg.mappa.hero.hp += 50;
+		// 	case 2:
+		// 		this.gg.mappa.hero.hp += 50;
+		// 	case _:
+		// }
 		this.pos = 0;
 		this.aggiorna();
 	}

@@ -4,26 +4,33 @@ Ancora un clone di rogue realizzato in Haxe e Heap.io
 
 Al momento funziona:
 
-- [x] Generazione delle _Stanze_
-- [x] Movimento del _Personaggio_
-- [x] Raccolta _Pozioni_
+- [x] Generazione delle **Stanze**
+- [x] Movimento del **Personaggio**
+- [x] Raccolta **Pozioni**
 - [x] Inventario
-- [x] Uso _Pozioni_
+- [x] Uso **Pozioni**
 - [x] Screen iniziale
-- [x] Posizionamento _Pozioni_ nelle stanze
-- [x] Posizionamento _Mostri_ nelle stanze
-- [x] Un minimo di movimento dei _Mostri_
-- [x] Scena di _Game Over_
-- [x] Discesa nel _Dungeon_ tramite scale
-- [x] Bitmapfont per il titolo nella scena del _Menu_
+- [x] Posizionamento **Pozioni** nelle stanze
+- [x] Posizionamento **Mostri** nelle stanze
+- [x] Un minimo di movimento dei **Mostri**
+- [x] Scena di **Game Over**
+- [x] Discesa nel **Dungeon** tramite scale
+- [x] Bitmapfont per il titolo nella scena del **Menu**
+- [x] Aggiungere **Equipaggiamento**
 
 Cosa vorrei aggiungere ancora
 
-- [ ] Miglioramento movimento _Mostri_
-- [ ] Aggiungere _Equipaggiamento_
-- [ ] Creare un _Combattimento_
+- [ ] Miglioramento movimento **Mostri**
+- [ ] Creare un **Combattimento**
 - [ ] UI per informare il giocare
-- [ ] Aggiungere altri _Mostri_
+- [ ] Aggiungere altri **Mostri**
+
+## Oggetti
+
+Al momento ho inserito i seguenti **Oggetti**:
+
+- Pozione per curare le ferite [80%]
+- Anello monouso per eliminare tutti i mostri sulla mappa [20%]
 
 ## I tile
 

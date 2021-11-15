@@ -11,17 +11,22 @@ class Hero extends Entity {
 	var inventario:Bool = false;
 	var menu:Bool = true;
 
-	override public function new(pos:Point) {
+	override public function new() {
 		super();
 		this.hp = 100;
-		this.x = pos.x * 32;
-		this.y = pos.y * 32;
+		this.forza = 100;
+
 		this.sprite = new h2d.Bitmap(hxd.Res.human_m.toTile());
 		this.addChild(this.sprite);
 		this.zaino = Inventario.instance;
 		this.mappa = Mappa.instance;
 		this.gg = Game.instance;
 		hxd.Window.getInstance().addEventTarget(this.movimento);
+	}
+
+	public function setPos(pos:Point) {
+		this.x = pos.x * 32;
+		this.y = pos.y * 32;
 	}
 
 	public function movimento(event:hxd.Event) {
@@ -100,7 +105,7 @@ class Hero extends Entity {
 						if (event.keyCode == 87) {
 							this.zaino.pos = (this.zaino.pos - 1);
 							if (this.zaino.pos < 0)
-								this.zaino.pos += this.zaino.inventario.length;
+								this.zaino.pos = this.zaino.inventario.length - 1;
 						}
 						if (event.keyCode == 73) {
 							this.inventario = false;

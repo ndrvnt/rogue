@@ -11,6 +11,7 @@ class Enemy extends Entity {
 		this.x = pos.x * 32;
 		this.y = pos.y * 32;
 		this.hp = 20;
+		this.forza = 20;
 		this.sprite = this.getSprite();
 		this.addChild(this.sprite);
 		this.gg = Game.instance;
